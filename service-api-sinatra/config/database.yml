@@ -1,0 +1,33 @@
+# database.yml, where we declare various DB
+# settings and parameters
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # db private ip address
+  # https://cloud.digitalocean.com/databases
+  host: <%= ENV['DB_HOST'] %>
+  # db port
+  # https://cloud.digitalocean.com/databases
+  port: 25060
+  # db username
+  # https://cloud.digitalocean.com/databases
+  username: doadmin
+  # db password
+  # https://cloud.digitalocean.com/databases
+  password: <%= ENV['DB_PASSWORD'] %>
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 2
+
+
+development:
+  <<: *default
+  database: srv_api_dev
+
+test:
+  <<: *default
+  database: srv_api_test
+
+production:
+  <<: *default
+  database: srv_api_prod
